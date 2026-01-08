@@ -41,7 +41,7 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
 
         public static string playerId => AuthenticationService.Instance.PlayerId;
 
-        public List<Player> players { get; private set; }
+        public List<Unity.Services.Lobbies.Models.Player> players { get; private set; }
 
         public int numPlayers => players.Count;
 
@@ -435,9 +435,9 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
             }
         }
 
-        Player CreatePlayerData()
+        Unity.Services.Lobbies.Models.Player CreatePlayerData()
         {
-            var player = new Player();
+            var player = new Unity.Services.Lobbies.Models.Player();
             player.Data = CreatePlayerDictionary();
 
             return player;
@@ -480,7 +480,7 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
             }
         }
 
-        static bool DidPlayersChange(List<Player> oldPlayers, List<Player> newPlayers)
+        static bool DidPlayersChange(List<Unity.Services.Lobbies.Models.Player> oldPlayers, List<Unity.Services.Lobbies.Models.Player> newPlayers)
         {
             if (oldPlayers.Count != newPlayers.Count)
             {
@@ -527,7 +527,7 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
                 return;
             }
 
-            var lobbyData = lobby.Data.Select(kvp => $"{kvp.Key} is {kvp.Value.Value}" );
+            var lobbyData = lobby.Data.Select(kvp => $"{kvp.Key} is {kvp.Value.Value}");
             var lobbyDataStr = string.Join(", ", lobbyData);
 
             Debug.Log($"Lobby Named:{lobby.Name}, " +
